@@ -15,19 +15,19 @@ def connect_mqtt() -> mqtt_client:
     client.connect(globals.broker, globals.port)
     return client
 
-def subscribe(client: mqtt_client):
+def subscribe(client: mqtt_client, topics: any):
     def on_message(client, userdata, msg):
         print("New message received: ", msg.payload.decode())
 
-    for topic, msg, callback in globals.srs.topics:
+    for topic, callback in topics:
         client.subscribe(topic)
         client.message_callback_add(topic, callback)
 
     client.on_message = on_message
 
-def run():
+def run(topics):
     client = connect_mqtt()
-    subscribe(client)
+    subscribe(client, topics)
     client.loop_forever()
 
 if __name__ == '__main__':

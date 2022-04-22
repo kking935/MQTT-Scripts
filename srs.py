@@ -6,13 +6,13 @@ import subprocess
 class SRS:
     def __init__(self):
         self.ue_process = None
-        self.ue_command = "sleep 100"
+        self.ue_command = "srsue"
 
         self.enb_process = None
-        self.enb_command = "sleep 100"
+        self.enb_command = "srsenb"
         
         self.epc_process = None
-        self.epc_command = "sleep 100"
+        self.epc_command = "srsepc"
 
         self.topics = [
             ("ue", "Sending ue signal toggle", self.startUE),
