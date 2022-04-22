@@ -19,7 +19,7 @@ def subscribe(client: mqtt_client, topics: any):
     def on_message(client, userdata, msg):
         print("New message received: ", msg.payload.decode())
 
-    for topic, callback in topics:
+    for topic, msg, callback in topics:
         client.subscribe(topic)
         client.message_callback_add(topic, callback)
 
